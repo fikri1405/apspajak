@@ -1,0 +1,180 @@
+<div id="pg-pajak-preview" aria-label="Pratinjau aplikasi pajak desa">
+  <style>
+    #pg-pajak-preview { --pg-bg:light-dark(#f5f7f7,#141d20); --pg-paper:light-dark(#ffffff,#1d282c); --pg-ink:light-dark(#183437,#edf5f3); --pg-muted:light-dark(#52696d,#b0c4c5); --pg-line:light-dark(#dce5e4,#3c5054); --pg-accent:light-dark(#12665b,#91dacb); --pg-soft:light-dark(#e8f4ef,#253e37); --pg-warn:light-dark(#805616,#edc47e); --pg-warn-bg:light-dark(#fff4df,#423521); font-family:Arial,sans-serif; font-size:16px; line-height:1.5; color:var(--pg-ink); width:100%; }
+    #pg-pajak-preview * { box-sizing:border-box; }
+    #pg-pajak-preview [hidden] { display:none !important; }
+    #pg-pajak-preview .pg-phone { max-width:460px; margin:auto; background:var(--pg-bg); border:1px solid var(--pg-line); border-radius:24px; overflow:hidden; }
+    #pg-pajak-preview .pg-demo { padding:8px 20px; font-size:12px; text-align:center; letter-spacing:.04em; color:var(--pg-muted); border-bottom:1px solid var(--pg-line); background:var(--pg-paper); }
+    #pg-pajak-preview .pg-header { display:flex; gap:12px; align-items:center; padding:22px 20px 16px; background:var(--pg-paper); }
+    #pg-pajak-preview .pg-logo { display:flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:14px; background:var(--pg-soft); color:var(--pg-accent); flex-shrink:0; }
+    #pg-pajak-preview h1 { font-size:21px; line-height:1.25; font-weight:500; margin:0 0 3px; letter-spacing:-.5px; }
+    #pg-pajak-preview h2 { font-size:19px; line-height:1.3; font-weight:500; margin:0; }
+    #pg-pajak-preview p { margin:0; }
+    #pg-pajak-preview .pg-sub { color:var(--pg-muted); font-size:13px; }
+    #pg-pajak-preview .pg-offline { display:flex; flex-wrap:wrap; gap:6px 16px; align-items:center; justify-content:space-between; padding:10px 20px; background:var(--pg-soft); font-size:12px; color:var(--pg-accent); }
+    #pg-pajak-preview .pg-inline { display:inline-flex; align-items:center; gap:6px; }
+    #pg-pajak-preview .pg-controls { padding:20px 20px 16px; background:var(--pg-paper); border-bottom:1px solid var(--pg-line); }
+    #pg-pajak-preview label { display:block; margin:0 0 7px; font-size:13px; font-weight:500; }
+    #pg-pajak-preview .pg-search { display:flex; gap:9px; align-items:center; border:1px solid var(--pg-line); border-radius:12px; padding:0 12px; background:var(--pg-bg); }
+    #pg-pajak-preview .pg-search:focus-within { outline:2px solid var(--pg-accent); outline-offset:2px; }
+    #pg-pajak-preview input { min-width:0; width:100%; height:48px; font:inherit; color:var(--pg-ink); background:transparent; border:0; }
+    #pg-pajak-preview input::placeholder { color:var(--pg-muted); }
+    #pg-pajak-preview button, #pg-pajak-preview select { font:inherit; }
+    #pg-pajak-preview button { cursor:pointer; }
+    #pg-pajak-preview .pg-clear { border:0; background:transparent; color:var(--pg-accent); min-width:44px; min-height:44px; font-size:13px; }
+    #pg-pajak-preview .pg-filter { display:flex; align-items:center; gap:12px; margin:16px 0 0; }
+    #pg-pajak-preview .pg-filter label { margin:0; white-space:nowrap; }
+    #pg-pajak-preview select { min-width:0; flex:1; height:44px; padding:0 12px; border:1px solid var(--pg-line); border-radius:10px; color:var(--pg-ink); background:var(--pg-paper); }
+    #pg-pajak-preview .pg-scope { font-size:12px; color:var(--pg-muted); margin-top:12px; }
+    #pg-pajak-preview .pg-content { padding:18px 16px 20px; }
+    #pg-pajak-preview .pg-result-title { display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:0 4px 12px; }
+    #pg-pajak-preview .pg-result-title h2 { font-size:16px; }
+    #pg-pajak-preview .pg-count { font-size:12px; color:var(--pg-muted); text-align:right; }
+    #pg-pajak-preview .pg-group-title { margin:14px 4px 10px; font-size:13px; font-weight:500; color:var(--pg-muted); }
+    #pg-pajak-preview .pg-entry { display:block; width:100%; text-align:left; margin:0 0 10px; padding:16px; border:1px solid var(--pg-line); border-radius:14px; background:var(--pg-paper); color:var(--pg-ink); }
+    #pg-pajak-preview .pg-entry:hover { border-color:var(--pg-accent); }
+    #pg-pajak-preview .pg-entry-top { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:7px; }
+    #pg-pajak-preview .pg-name { font-size:var(--pg-name-size,16px); font-weight:500; }
+    #pg-pajak-preview .pg-tag { background:var(--pg-soft); color:var(--pg-accent); font-size:11px; padding:3px 7px; border-radius:5px; white-space:nowrap; }
+    #pg-pajak-preview .pg-address { font-size:var(--pg-address-size,13px); color:var(--pg-muted); overflow-wrap:anywhere; }
+    #pg-pajak-preview .pg-nop { font-size:12px; color:var(--pg-muted); margin:3px 0 12px; overflow-wrap:anywhere; }
+    #pg-pajak-preview .pg-entry-bottom { display:flex; justify-content:space-between; align-items:center; gap:8px; border-top:1px solid var(--pg-line); padding-top:11px; }
+    #pg-pajak-preview .pg-money { font-size:16px; font-weight:500; font-variant-numeric:tabular-nums; }
+    #pg-pajak-preview .pg-open { font-size:12px; color:var(--pg-accent); }
+    #pg-pajak-preview .pg-footer { padding:2px 20px 18px; color:var(--pg-muted); font-size:11px; text-align:center; }
+    #pg-pajak-preview .pg-back { display:flex; align-items:center; gap:8px; background:transparent; color:var(--pg-accent); border:0; min-height:44px; padding:8px 0; margin-bottom:12px; font-size:14px; }
+    #pg-pajak-preview .pg-detail { padding:12px 20px 22px; }
+    #pg-pajak-preview .pg-detail .pg-tag { display:inline-block; margin-bottom:10px; }
+    #pg-pajak-preview .pg-detail-nop { font-size:13px; color:var(--pg-muted); margin-top:7px; overflow-wrap:anywhere; }
+    #pg-pajak-preview .pg-amount-panel { padding:20px; margin:22px 0; border-radius:14px; border:1px solid var(--pg-line); background:var(--pg-paper); }
+    #pg-pajak-preview .pg-amount { font-size:30px; line-height:1.3; letter-spacing:-1px; font-weight:500; margin:5px 0 12px; font-variant-numeric:tabular-nums; }
+    #pg-pajak-preview .pg-status { display:inline-block; font-size:12px; padding:4px 8px; border-radius:6px; color:var(--pg-warn); background:var(--pg-warn-bg); margin-bottom:7px; }
+    #pg-pajak-preview .pg-fields { margin:14px 0 18px; }
+    #pg-pajak-preview .pg-fields > div { display:grid; grid-template-columns:1fr 1.2fr; gap:16px; border-bottom:1px solid var(--pg-line); padding:13px 0; }
+    #pg-pajak-preview dt { font-size:13px; color:var(--pg-muted); }
+    #pg-pajak-preview dd { font-size:14px; margin:0; text-align:right; overflow-wrap:anywhere; }
+    #pg-pajak-preview .pg-empty { padding:26px 12px; text-align:center; }
+    #pg-pajak-preview .pg-empty p { margin:8px 0; color:var(--pg-muted); font-size:14px; }
+    #pg-pajak-preview .pg-all { min-height:44px; padding:8px 16px; border:1px solid var(--pg-line); background:var(--pg-paper); color:var(--pg-accent); border-radius:10px; margin-top:10px; }
+    #pg-pajak-preview svg { flex-shrink:0; }
+    @media(max-width:360px) { #pg-pajak-preview .pg-header, #pg-pajak-preview .pg-controls { padding-left:14px; padding-right:14px; } #pg-pajak-preview .pg-content { padding-left:10px; padding-right:10px; } #pg-pajak-preview .pg-entry { padding:13px; } }
+  </style>
+  <div class="pg-phone">
+    <div class="pg-demo">PRATINJAU · DATA FIKTIF</div>
+    <header class="pg-header">
+      <div class="pg-logo"><i data-lucide="landmark" aria-hidden="true"></i></div>
+      <div><h1>Pajak Desa</h1><p class="pg-sub">Pematang Ganjang · PBB 2026</p></div>
+    </header>
+    <div class="pg-offline"><span class="pg-inline"><i data-lucide="wifi-off" aria-hidden="true"></i>Contoh tampilan offline</span><span>Data: 16 Sep 2026</span></div>
+    <section class="pg-list-view" aria-label="Daftar objek pajak">
+      <div class="pg-controls">
+        <label for="pg-search-input">Cari objek pajak</label>
+        <div class="pg-search"><i data-lucide="search" aria-hidden="true"></i><input id="pg-search-input" type="search" placeholder="Nama, NOP, atau alamat" autocomplete="off" aria-describedby="pg-search-scope"><button class="pg-clear" type="button" hidden aria-label="Hapus pencarian">Hapus</button></div>
+        <div class="pg-filter"><label for="pg-dusun-select">Lihat dusun</label><select id="pg-dusun-select"><option value="all">Semua dusun</option>I</option><option>II</option><option selected>III</option><option>IV</option><option>V</option><option>VI</option><option>VII</option><option>VIII</option><option value="unknown">Belum ditentukan</option></select></div>
+        <p class="pg-scope" id="pg-search-scope">Pencarian selalu menjangkau semua dusun.</p>
+      </div>
+      <div class="pg-content">
+        <div class="pg-result-title"><h2 class="pg-list-heading">Objek di Dusun III</h2><span class="pg-count" role="status" aria-live="polite"></span></div>
+        <div class="pg-results"></div>
+      </div>
+      <p class="pg-footer">Pengelompokan mengikuti lokasi objek pajak.</p>
+    </section>
+    <section class="pg-detail" aria-label="Detail objek pajak" hidden>
+      <button class="pg-back" type="button"><i data-lucide="arrow-left" aria-hidden="true"></i>Kembali ke daftar</button>
+      <span class="pg-tag pg-detail-dusun"></span>
+      <p class="pg-sub">Nama wajib pajak</p>
+      <h2 class="pg-detail-name"></h2>
+      <p class="pg-detail-nop"></p>
+      <div class="pg-amount-panel"><p class="pg-sub">Pokok PBB · 2026</p><p class="pg-amount"></p><span class="pg-status">Belum lunas pada data sumber</span><p class="pg-sub">Pembaruan contoh: 16 September 2026</p></div>
+      <h2>Lokasi &amp; objek pajak</h2>
+      <dl class="pg-fields"></dl>
+      <p class="pg-sub">Status mengikuti data pembaruan terakhir.</p>
+    </section>
+  </div>
+  <script>
+  (() => {
+    const root = document.getElementById('pg-pajak-preview');
+    const q = selector => root.querySelector(selector);
+    const entries = [
+      {id:1,name:'Budi Santoso',dusun:'III',address:'JL DUSUN III',nop:'CONTOH-003-0001',amount:185000,land:450,building:72},
+      {id:2,name:'Siti Aminah',dusun:'III',address:'DUSUN III',nop:'CONTOH-003-0002',amount:246000,land:720,building:90},
+      {id:3,name:'Ahmad Hidayat',dusun:'III',address:'JL DUSUN III',nop:'CONTOH-003-0003',amount:128500,land:300,building:54},
+      {id:4,name:'Budi Santoso',dusun:'V',address:'JL DUSUN V',nop:'CONTOH-005-0004',amount:312000,land:950,building:120},
+      {id:5,name:'Dewi Lestari',dusun:'I',address:'DUSUN I',nop:'CONTOH-001-0005',amount:157000,land:380,building:60},
+      {id:6,name:'Rudi Hartono',dusun:'II',address:'JL DUSUN II',nop:'CONTOH-002-0006',amount:225000,land:650,building:80},
+      {id:7,name:'Sri Wahyuni',dusun:'IV',address:'DUSUN IV',nop:'CONTOH-004-0007',amount:198000,land:500,building:70},
+      {id:8,name:'Agus Saputra',dusun:'VI',address:'JL DUSUN VI',nop:'CONTOH-006-0008',amount:276000,land:800,building:100},
+      {id:9,name:'Nur Aisyah',dusun:'VII',address:'DUSUN VII',nop:'CONTOH-007-0009',amount:163000,land:400,building:65},
+      {id:10,name:'Eko Prasetyo',dusun:'VIII',address:'JL DUSUN VIII',nop:'CONTOH-008-0010',amount:204000,land:600,building:75},
+      {id:11,name:'Ratna Sari',dusun:'unknown',address:'DS PEMATANG GANJANG',nop:'CONTOH-000-0011',amount:142000,land:350,building:0}
+    ];
+    const money = value => 'Rp' + value.toLocaleString('id-ID');
+    const dusunLabel = value => value === 'unknown' ? 'Belum ditentukan' : 'Dusun ' + value;
+    const normalize = value => value.toLowerCase().replace(/[^a-z0-9]/g,'');
+    let lastOpened = null;
+    const search = q('#pg-search-input');
+    const filter = q('#pg-dusun-select');
+    function makeCard(item) {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'pg-entry';
+      button.dataset.id = item.id;
+      button.setAttribute('aria-label',item.name+', '+dusunLabel(item.dusun)+', '+item.nop+', lihat detail');
+      button.innerHTML = `<span class="pg-entry-top"><span class="pg-name">${item.name}</span><span class="pg-tag">${dusunLabel(item.dusun)}</span></span><span class="pg-address">${item.address}</span><div class="pg-nop">NOP ${item.nop}</div><span class="pg-entry-bottom"><span class="pg-money">${money(item.amount)}</span><span class="pg-open">Lihat detail →</span></span>`;
+      button.addEventListener('click',() => openDetail(item,button));
+      return button;
+    }
+    function renderList() {
+      const term = normalize(search.value);
+      const selected = filter.value;
+      const found = entries.filter(item => term ? [item.name,item.nop,item.address].some(value => normalize(value).includes(term)) : selected === 'all' || item.dusun === selected);
+      q('.pg-clear').hidden = search.value.length === 0;
+      q('.pg-list-heading').textContent = term ? 'Hasil semua dusun' : selected === 'all' ? 'Semua objek pajak' : selected === 'unknown' ? 'Dusun belum ditentukan' : 'Objek di '+dusunLabel(selected);
+      q('.pg-count').textContent = found.length + ' objek contoh';
+      const results = q('.pg-results');
+      results.replaceChildren();
+      if (!found.length) {
+        const empty = document.createElement('div');
+        empty.className = 'pg-empty';
+        empty.innerHTML = '<h2>Objek belum ditemukan</h2><p>Coba sebagian nama, nomor NOP, atau alamat objek.</p><button type="button" class="pg-all">Lihat semua objek</button>';
+        empty.querySelector('button').addEventListener('click',() => { search.value=''; filter.value='all'; renderList(); search.focus(); });
+        results.append(empty);
+        return;
+      }
+      if (term && selected !== 'all') {
+        const groups = [[found.filter(item=>item.dusun===selected),dusunLabel(selected)+' · pilihan saat ini'],[found.filter(item=>item.dusun!==selected),'Ditemukan di dusun lain']];
+        groups.forEach(([items,title]) => {
+          if (!items.length) return;
+          const label = document.createElement('h3'); label.className='pg-group-title'; label.textContent=title; results.append(label);
+          items.forEach(item=>results.append(makeCard(item)));
+        });
+      } else found.forEach(item=>results.append(makeCard(item)));
+    }
+    function openDetail(item,trigger) {
+      lastOpened=trigger;
+      q('.pg-detail-dusun').textContent=dusunLabel(item.dusun);
+      q('.pg-detail-name').textContent=item.name;
+      q('.pg-detail-nop').textContent='NOP '+item.nop;
+      q('.pg-amount').textContent=money(item.amount);
+      const fields = q('.pg-fields'); fields.replaceChildren();
+      [['Alamat objek asli',item.address],['Dusun objek',dusunLabel(item.dusun)],['Desa','Pematang Ganjang'],['Luas tanah',item.land.toLocaleString('id-ID')+' m²'],['Luas bangunan',item.building.toLocaleString('id-ID')+' m²'],['Tahun pajak','2026']].forEach(([label,value])=>{
+        const row=document.createElement('div'); const dt=document.createElement('dt'); const dd=document.createElement('dd'); dt.textContent=label; dd.textContent=value; row.append(dt,dd); fields.append(row);
+      });
+      q('.pg-list-view').hidden=true; q('.pg-detail').hidden=false; q('.pg-back').focus();
+    }
+    q('.pg-back').addEventListener('click',()=>{q('.pg-detail').hidden=true;q('.pg-list-view').hidden=false;if(lastOpened)lastOpened.focus();});
+    search.addEventListener('input',renderList);
+    filter.addEventListener('change',renderList);
+    q('.pg-clear').addEventListener('click',()=>{search.value='';renderList();search.focus();});
+    renderList();
+    if (globalThis.Tweak) {
+      const design={largeText:false};
+      const tweak=new Tweak({container:root,onChange:()=>{
+        root.style.setProperty('--pg-name-size',design.largeText?'18px':'16px');
+        root.style.setProperty('--pg-address-size',design.largeText?'15px':'13px');
+      }});
+      tweak.addToggle(design,'largeText',{label:'Teks daftar lebih besar'});
+    }
+  })();
+  </script>
+</div>

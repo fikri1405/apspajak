@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#12665b">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Pajak Desa · Pematang Ganjang</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="validate.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="brand-mark" aria-hidden="true">PG</div>
+      <div class="brand"><h1>Pajak Desa</h1><p>Pematang Ganjang</p></div>
+      <button type="button" id="install" class="quiet-button" hidden>Pasang</button>
+    </header>
+    <div class="connection-bar"><span id="offline-state" role="status">Menyiapkan daftar…</span><span id="connection"></span></div>
+    <main>
+      <div id="notice" class="notice" role="status" hidden></div>
+      <section id="loading"><h2>Memuat daftar pajak</h2><p>Menyiapkan data untuk pencarian.</p></section>
+      <section id="error" hidden><h2>Daftar belum bisa dibuka</h2><p id="error-message"></p><button id="retry" type="button" class="primary-button">Coba lagi</button></section>
+      <section id="list-view" aria-label="Daftar objek pajak" hidden>
+        <div class="controls">
+          <label for="search">Cari objek pajak</label>
+          <div class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Nama, NOP, atau alamat objek" autocomplete="off" aria-describedby="search-scope"><button id="clear-search" type="button" aria-label="Hapus pencarian" hidden>Hapus</button></div>
+          <div class="filter-row"><label for="dusun">Lihat dusun</label><select id="dusun"><option value="all">Semua dusun</option><option value="I">Dusun I</option><option value="II">Dusun II</option><option value="III">Dusun III</option><option value="IV">Dusun IV</option><option value="V">Dusun V</option><option value="VI">Dusun VI</option><option value="VII">Dusun VII</option><option value="VIII">Dusun VIII</option><option value="unknown">Belum ditentukan</option></select></div>
+          <p id="search-scope" class="muted small">Pencarian menjangkau seluruh dusun, termasuk di luar pilihanmu.</p>
+        </div>
+        <div class="list-content">
+          <div class="section-heading"><h2 id="results-title">Semua objek pajak</h2><span id="result-count" class="muted small" role="status" aria-live="polite"></span></div>
+          <div id="results"></div>
+          <div id="empty" class="empty" hidden><h2>Objek belum ditemukan</h2><p>Coba sebagian nama, nomor NOP, atau alamat objek.</p><button id="show-all" class="quiet-button" type="button">Lihat semua objek</button></div>
+          <button id="more" type="button" class="more-button" hidden>Tampilkan berikutnya</button>
+        </div>
+        <footer class="data-footer">
+          <div class="footer-heading"><h2>Data yang tersimpan</h2><button id="refresh" type="button" class="quiet-button">Perbarui daftar</button></div>
+          <p id="data-summary"></p><p id="data-date"></p>
+          <p id="source-scope"></p>
+          <p class="source-warning">Dusun dibaca dari alamat objek dan belum diverifikasi. Status mengikuti file sumber, bukan informasi pembayaran langsung.</p>
+        </footer>
+      </section>
+      <section id="detail-view" class="detail" hidden aria-label="Detail objek pajak">
+        <button id="back" type="button" class="back-button">← Kembali ke daftar</button>
+        <span id="detail-dusun" class="tag"></span>
+        <p class="muted small detail-label">Nama wajib pajak</p><h2 id="detail-name"></h2><p id="detail-nop" class="muted small"></p>
+        <div class="amount-panel"><p id="detail-year" class="muted small"></p><p id="detail-amount" class="amount"></p><span id="detail-status" class="status-tag"></span><p id="detail-source-date" class="muted small"></p></div>
+        <h3>Lokasi &amp; objek pajak</h3><dl id="detail-fields"></dl>
+        <p class="muted small">Pengelompokan dusun berdasarkan alamat objek pada file sumber. Jika berbeda dari kondisi lapangan, sampaikan NOP kepada admin desa.</p>
+      </section>
+    </main>
+    <noscript>Aplikasi memerlukan JavaScript untuk mencari dan menyimpan daftar.</noscript>
+  </div>
+</body>
+</html>
